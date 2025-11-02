@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Moodle JCT Redesign",
+  "description": "Improves the design and usability of moodle.jct.ac.il with modern styles and small layout tweaks.",
+  "version": "0.1.0",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://moodle.jct.ac.il/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://moodle.jct.ac.il/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/placeholder.svg"
+      ],
+      "matches": ["https://moodle.jct.ac.il/*"]
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

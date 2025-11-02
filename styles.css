@@ -1,0 +1,266 @@
+/* Minimal base (kept) */
+.jct-moodle-redesign body {
+	font-family: "Segoe UI", Inter, Roboto, Arial, "Helvetica Neue", "Noto Sans", sans-serif;
+	background: #fafafa;
+	color: #1f2937;
+	line-height: 1.55;
+}
+
+.jct-moodle-redesign a { color: #1f4ed8; text-decoration: none; }
+.jct-moodle-redesign a:hover { text-decoration: underline; }
+
+.jct-moodle-redesign #page,
+.jct-moodle-redesign #region-main,
+.jct-moodle-redesign .container,
+.jct-moodle-redesign .pagelayout-course .container-fluid {
+	max-width: 1200px;
+	margin-inline: auto;
+	padding-inline: 12px;
+}
+
+/* Robust multi-column grid */
+.jct-courses-grid {
+	width: 100% !important;
+	max-width: none !important;
+	display: grid !important;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 16px;
+}
+
+/* Ensure children in our grid ignore Bootstrap flex sizing */
+.jct-courses-grid > *,
+.jct-courses-grid .list-group > *,
+.jct-courses-grid .row > * {
+	flex: 0 0 auto !important;
+	max-width: 100% !important;
+}
+
+/* If a grid container accidentally has display:flex from Bootstrap, force grid */
+.jct-courses-grid { display: grid !important; }
+
+/* Ensure grid items don't force 100% width */
+.jct-courses-grid > * { width: auto !important; }
+
+/* Override Bootstrap list-group vertical layout inside our grid */
+.jct-courses-grid.list-group { display: grid !important; }
+
+/* Convert list items to cards */
+.jct-courses-grid > .list-group-item,
+.jct-courses-grid .list-group > .list-group-item,
+.jct-courses-grid .coursebox,
+.jct-courses-grid .card.course,
+.jct-courses-grid .course-list > li {
+	border-radius: 14px !important;
+	border: 1px solid #e6eaf0 !important;
+	background: #ffffff !important;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+	transition: transform .18s ease, box-shadow .18s ease;
+	margin: 0 !important;
+	padding: 16px !important;
+}
+
+.jct-courses-grid > .list-group-item:hover,
+.jct-courses-grid .list-group > .list-group-item:hover,
+.jct-courses-grid .coursebox:hover,
+.jct-courses-grid .card.course:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+}
+
+/* Uniform card sizing */
+.jct-courses-grid > .list-group-item,
+.jct-courses-grid .list-group > .list-group-item,
+.jct-courses-grid .coursebox,
+.jct-courses-grid .card.course,
+.jct-courses-grid .course-list > li {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	height: 340px; /* unified */
+	overflow: hidden;
+}
+
+/* Clamp long titles to two lines for consistent heights */
+.jct-courses-grid .coursename a,
+.jct-courses-grid .course-title a,
+.jct-courses-grid .list-group-item a.course-title,
+.jct-courses-grid .list-group-item .coursename a {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	max-width: 95%;
+}
+
+/* Stronger accent usage on card background and top bar */
+.jct-courses-grid > .list-group-item,
+.jct-courses-grid .list-group > .list-group-item,
+.jct-courses-grid .coursebox,
+.jct-courses-grid .card.course,
+.jct-courses-grid .course-list > li {
+	background: hsla(var(--jct-accent-h,230), calc(var(--jct-accent-s,60%)), 96%, 1) !important;
+	border: 2px solid hsl(var(--jct-accent-h,230), calc(var(--jct-accent-s,60%)), 70%) !important;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+	position: relative;
+}
+
+.jct-courses-grid > .list-group-item::before,
+.jct-courses-grid .list-group > .list-group-item::before,
+.jct-courses-grid .coursebox::before,
+.jct-courses-grid .card.course::before,
+.jct-courses-grid .course-list > li::before {
+	content: "";
+	position: absolute;
+	top: 0; left: 0; right: 0;
+	height: 6px;
+	background: hsl(var(--jct-accent-h,230), calc(var(--jct-accent-s,60%)), var(--jct-accent-l,55%));
+	border-top-left-radius: 12px; border-top-right-radius: 12px;
+}
+
+/* Thumbnail area: fixed height for uniformity */
+.jct-course-thumb,
+.jct-courses-grid img.courseimage,
+.jct-courses-grid .courseimage img,
+.jct-courses-grid .courseimage {
+	width: 100%;
+	height: 140px;
+	max-height: 140px;
+	object-fit: cover;
+	border-radius: 12px;
+	margin-bottom: 12px;
+	background: linear-gradient(135deg, #e9efff, #f5f7ff);
+}
+
+/* Placeholder styling (when no image) */
+.jct-course-thumb {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #4f46e5;
+	border: 1px dashed #c7cde8;
+}
+.jct-course-thumb svg { width: 48px; height: 48px; opacity: 0.9; }
+
+/* Larger title remains */
+.jct-courses-grid .coursename a,
+.jct-courses-grid .course-title a,
+.jct-courses-grid .list-group-item a.course-title,
+.jct-courses-grid .list-group-item .coursename a { margin-top: 2px; }
+
+/* Title sizing inside various structures */
+.jct-courses-grid .coursename a,
+.jct-courses-grid .course-title a,
+.jct-courses-grid .list-group-item a.course-title,
+.jct-courses-grid .list-group-item .coursename a {
+	font-size: 18px !important;
+	font-weight: 700 !important;
+	color: #0f172a !important;
+	text-decoration: none !important;
+}
+
+/* Subtext */
+.jct-courses-grid .teachers,
+.jct-courses-grid .summary,
+.jct-courses-grid .card-text,
+.jct-courses-grid .dimmed_text {
+	color: #64748b !important;
+	font-size: 13px !important;
+	margin-top: 6px;
+}
+
+/* Images/thumbnails alignment if present */
+.jct-courses-grid img.courseimage,
+.jct-courses-grid .courseimage img,
+.jct-courses-grid .courseimage {
+	max-height: 120px;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+/* Optional status badges if present */
+.jct-courses-grid .badge,
+.jct-courses-grid .label {
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 11px !important;
+	padding: 4px 8px !important;
+}
+
+/* Keep subtle card spacing without changing site-wide spacing */
+.jct-courses-grid .coursebox,
+.jct-courses-grid .block_myoverview .course,
+.jct-courses-grid .card.course { margin: 0 !important; }
+
+/* Keep overall minimal tweaks */
+.jct-moodle-redesign h1, 
+.jct-moodle-redesign h2, 
+.jct-moodle-redesign #page-header .page-context-header h1 {
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
+
+.jct-moodle-redesign .btn, 
+.jct-moodle-redesign input[type="submit"],
+.jct-moodle-redesign button { border-radius: 8px !important; }
+
+.jct-moodle-redesign input[type="text"],
+.jct-moodle-redesign input[type="search"],
+.jct-moodle-redesign select,
+.jct-moodle-redesign textarea {
+	border-radius: 8px !important;
+	border: 1px solid #d1d5db !important;
+	background: #fff !important;
+	padding: 6px 10px !important;
+}
+
+.jct-moodle-redesign table th, 
+.jct-moodle-redesign table td {
+	border-bottom: 1px solid #eaecef !important;
+	padding: 10px 12px !important;
+}
+
+.jct-moodle-redesign .breadcrumb { background: transparent !important; }
+.jct-moodle-redesign #page-footer { background: transparent; color: #6b7280; }
+
+.jct-rtl { direction: rtl; }
+
+/* Thumbnail wrapper fixed at top */
+.jct-thumb-wrap {
+	width: 100%; height: 140px; border-radius: 12px; overflow: hidden; margin-bottom: 12px; position: relative;
+	background: linear-gradient(180deg,
+		hsla(var(--jct-accent-h,230), calc(var(--jct-accent-s,60%)), 88%, 1),
+		hsla(var(--jct-accent-h,230), calc(var(--jct-accent-s,60%)), 96%, 1)
+	);
+	border: 1px solid hsl(var(--jct-accent-h,230), calc(var(--jct-accent-s,60%)), 72%);
+}
+.jct-thumb-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Accent ring on card using year color */
+.jct-courses-grid > .list-group-item,
+.jct-courses-grid .list-group > .list-group-item,
+.jct-courses-grid .coursebox,
+.jct-courses-grid .card.course,
+.jct-courses-grid .course-list > li {
+	box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+	border-color: hsl(var(--jct-accent-h,230), var(--jct-accent-s,60%), 85%) !important;
+}
+
+/* Reset grid sizing back to balanced default */
+.jct-courses-grid {
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 16px;
+}
+
+/* Force 3 columns on desktop to avoid collapsing to one column */
+@media (min-width: 992px) {
+	.jct-courses-grid {
+		display: grid !important;
+		grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+		column-gap: 28px !important;
+		row-gap: 28px !important;
+		padding-inline: 8px;
+	}
+}
