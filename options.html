@@ -23,11 +23,16 @@
 <body>
 	<h1>צבעים לכל שנה ולכל סמסטר</h1>
 	<table id="palette-table"></table>
+	<div style="margin:16px 0;">
+	<label for="columnCount">מספר עמודות (3–6): </label>
+	<input id="columnCount" type="number" min="3" max="6" step="1" style="width:60px;">
+	</div>
 	<div class="actions">
 		<button id="save" class="primary">שמירה</button>
 		<button id="reset">איפוס לברירת מחדל</button>
 	</div>
 	<p class="small">שנה = שורה. סמסטר = עמודה. שמור ורענן את העמוד כדי לראות. טווח: תשפ"ד (2024) עד תש"צ (5790).</p>
+	
 	<script src="options.js"></script>
 </body>
 </html>

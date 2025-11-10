@@ -68,3 +68,7 @@ foreach ($s in $Sizes) {
 Write-Host "Done. Icons saved to $fullOut"
 
 
+
+
+
+
